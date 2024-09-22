@@ -11,7 +11,6 @@ int main(int argc, char** argv)
     for(long long int i = 0; i < N; i++)
     {
       arr[i] =  -1 +   ((double)(rand())) /((double)(RAND_MAX/2));
-      cout << arr[i]<<std::endl;
     }
 
   auto start_time = std::chrono::high_resolution_clock::now();
