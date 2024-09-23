@@ -21,6 +21,7 @@ int main(int argc, char** argv)
   cout<<duration.count()<<std::endl;
   cout<<arr[0]<<std::endl;
   cout<<arr[N-1]<<std::endl;
-
+  
+  free(arr);
 
 }
