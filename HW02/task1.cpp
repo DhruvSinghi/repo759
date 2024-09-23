@@ -4,6 +4,7 @@
 #include <fstream>
 #include "scan.h"
 using std::cout;
+using std::chrono::duration;
 int main(int argc, char** argv)
 {
     std::ofstream outfile;
@@ -24,10 +25,11 @@ int main(int argc, char** argv)
   auto start_time = std::chrono::high_resolution_clock::now();
   scan(arr,N);
   auto end_time = std::chrono::high_resolution_clock::now();
-  auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
+  duration <double, std::milli> duration_sec;
+  duration_sec = std::chrono::duration_cast<duration<double, std::milli>>(end_time - start_time);  
   outfile.open("data.txt",std::ios_base::app);
-  outfile << N <<" "<< duration.count()<<std::endl;
-  cout<<duration.count()<<std::endl;
+  outfile << N <<" "<< duration_sec.count()<<std::endl;
+  cout<<duration_sec.count()<<std::endl;
   cout<<arr[0]<<std::endl;
   cout<<arr[N-1]<<std::endl;
 
