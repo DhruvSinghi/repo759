@@ -3,7 +3,7 @@
 #include <chrono>
 #include <cstddef>
 #include "squashedMat.h"
-#include "convolve.h"
+#include "convolution.h"
 using std::cout;
 using std::chrono::duration;
 int main(int argc, char** argv)

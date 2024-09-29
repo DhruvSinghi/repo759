@@ -105,14 +105,4 @@ duration_sec = std::chrono::duration_cast<duration<float, std::milli>>(end_time 
 cout<<duration_sec.count()<<std::endl;
 cout<<C[(n-1)*n+n-1]<<std::endl;
 
-
-
-
-
-
-
-
-
-
-
 }
