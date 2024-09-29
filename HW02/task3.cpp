@@ -10,7 +10,7 @@ using std::chrono::duration;
 int main(int argc, char** argv)
 {
 
-const unsigned int n = 500;
+const unsigned int n = 1200;
 double*A = (double*)malloc(n*n*(sizeof(double)));
 double*B = (double*)malloc(n*n*(sizeof(double)));
 double*C = (double*)calloc(n*n,sizeof(double));
@@ -28,9 +28,9 @@ std::random_device entropy_source;
 std::mt19937_64 generator(entropy_source()); 
 std::uniform_real_distribution<float> dist(-1.0, 1.0);
 
-for(int i = 0; i < n; i++)
+for(unsigned int i = 0; i < n; i++)
 {
-   for(int j = 0; j < n; j++)
+   for(unsigned int j = 0; j < n; j++)
    {
       A[i*n+j] = dist(generator);
       B[i*n+j] = dist(generator);
