@@ -1,9 +1,10 @@
 #include "scan.h"
-void scan(double * arr ,long long int n)
+void scan(const float *arr, float *output, std::size_t n)
 {
-   for (long long int i = 1; i < n ; i++)
+   output[0] = arr[0];
+   for (std::size_t i = 1; i < n ; i++)
    {
-       arr[i] = arr[i] + arr[i-1];
+       output[i] = arr[i] + output[i-1];
    }
 
 }
