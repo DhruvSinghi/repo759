@@ -18,9 +18,9 @@ w.height = m;
 
 struct squashedMat g;
 g.height = (f.height) - 2;
-g.pMatvals = new float[g.height*g.height*sizeof(float)];
-f.pMatvals = new float[f.height*f.height*sizeof(float)];
-w.pMatvals = new float[w.height*w.height*sizeof(float)];
+g.pMatvals = new float[g.height*g.height];
+f.pMatvals = new float[f.height*f.height];
+w.pMatvals = new float[w.height*w.height];
 
 std::random_device entropy_source;
 std::mt19937_64 generator(entropy_source()); 
@@ -96,8 +96,8 @@ duration_sec = std::chrono::duration_cast<duration<float, std::milli>>(end_time 
 cout<<"Time:"<<duration_sec.count()<<"ms"<<std::endl;
 cout<<"First element:"<<g.pMatvals[0]<<std::endl;
 cout<<"Last element:"<<g.pMatvals[(g.height-1)*g.height+g.height-1];
-delete(f.pMatvals);
-delete(w.pMatvals);
-delete(g.pMatvals);
+delete[] f.pMatvals;
+delete[] w.pMatvals;
+delete[] g.pMatvals;
 
 }
