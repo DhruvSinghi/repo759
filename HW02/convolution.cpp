@@ -15,8 +15,8 @@ void convolve(const float *image, float *output, std::size_t n, const float *mas
             {
                 for(j = 0;j<m;j++)
                 {
-                    output[x*n+y] += (mask[i*m+j])*(image[(x+i-((m-1)/2))*n+(y+j-((m-1)/2))+n+1]);
-                    //cout << "g["<<x<<","<<y<<"] += "<<w->pMatvals[i*w->height+j]<<"*"<<f->pMatvals[(x+i+((w->height-1)/2))*f->height+(y+j+((w->height-1)/2))+f->height+1]<<"\n";
+                    output[x*n+y] += (mask[i*m+j])*(image[(x+i-((m-1)/2))*(n+2)+(y+j-((m-1)/2))+n+3]);
+                    //cout << "g["<<x<<","<<y<<"] += "<<mask[i*m+j]<<"*"<<image[(x+i+((m-1)/2))*+(y+j+((m-1)/2))+n+2+1]<<"\n";
                 }
             }
         }
