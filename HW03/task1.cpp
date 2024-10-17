@@ -31,29 +31,29 @@ for(unsigned int i = 0; i < n; i++)
 {
    for(unsigned int j = 0; j < n; j++)
    {
-      A[i*n+j] = a[i*n+j];//dist(generator);
-      B[i*n+j] = b[i*n+j];//dist(generator);
+      A[i*n+j] = dist(generator);
+      B[i*n+j] = dist(generator);
    }
 }
 
-for(int i = 0; i < n; i++)
+/*for(int i = 0; i < n; i++)
 {
    for(int j = 0; j < n; j++)
    {
      cout<<A[i*n+j]<<" ";
    }
 }
-cout<<std::endl;
+cout<<std::endl;*/
 
 
-for(int i = 0; i < n; i++)
+/*for(int i = 0; i < n; i++)
 {
    for(int j = 0; j < n; j++)
    {
      cout<<B[i*n+j]<<" ";
    }
 }
-cout<<std::endl;
+cout<<std::endl;*/
 //cout<<n<<std::endl;
 duration <float, std::milli> duration_sec;
 auto start_time = std::chrono::high_resolution_clock::now();
@@ -68,12 +68,12 @@ cout<<C[0]<<std::endl;
 cout<<C[(n-1)*n+n-1]<<std::endl;
 cout<<duration_sec.count()<<std::endl;
 
-for(int i = 0; i < n; i++)
+/*for(int i = 0; i < n; i++)
 {
    for(int j = 0; j < n; j++)
    {
      cout<<C[i*n+j]<<" ";
    }
 }
-cout<<std::endl;
+cout<<std::endl;*/
 }
