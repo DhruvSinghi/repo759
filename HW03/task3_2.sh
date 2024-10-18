@@ -6,8 +6,9 @@
 #SBATCH --time=0-00:10:00
 cd $SLURM_SUBMIT_DIR
 module load gcc/13.2.0
+
 g++ task3.cpp msort.cpp -Wall -O3 -std=c++17 -o task3 -fopenmp
-for((counter = 1; counter <= 20; counter = counter+1))
+for (( i=1; i<=20; i++ ))
 do
-./task2 1000000 $counter 1024
-done
+	./task3 1000000 $((i)) 32
+        done

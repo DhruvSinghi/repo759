@@ -11,8 +11,8 @@ int main(int argc, char** argv)
 
 size_t n = std::atoll(argv[1]);
 int threads = std::atoi(argv[2]);
-float a[9] = {1,1,1,2,2,2,3,3,3};
-float b[9] = {1,1,1,2,2,2,3,3,3};
+//float a[9] = {1,1,1,2,2,2,3,3,3};
+//float b[9] = {1,1,1,2,2,2,3,3,3};
 float*A = (float*)malloc(n*n*(sizeof(float)));
 float*B = (float*)malloc(n*n*(sizeof(float)));
 float*C = (float*)calloc(n*n,(sizeof(float)));
