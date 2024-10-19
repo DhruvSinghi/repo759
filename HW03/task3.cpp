@@ -45,7 +45,7 @@ auto end_time = std::chrono::high_resolution_clock::now();
 cout<<std::endl;
 duration <float, std::milli> duration_sec;
 duration_sec = std::chrono::duration_cast<duration<float, std::milli>>(end_time - start_time);
-cout<<duration_sec.count()<<std::endl;
 cout<<arr[0]<<std::endl;
 cout<<arr[n-1]<<std::endl;  
+cout<<duration_sec.count()<<std::endl;
 }

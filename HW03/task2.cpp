@@ -99,9 +99,9 @@ auto end_time = std::chrono::high_resolution_clock::now();
 }*/
 duration <float, std::milli> duration_sec;
 duration_sec = std::chrono::duration_cast<duration<float, std::milli>>(end_time - start_time);
-cout<<duration_sec.count()<<std::endl;
 cout<<g.pMatvals[0]<<std::endl;
 cout<<g.pMatvals[(g.height-1)*g.height+g.height-1]<<std::endl;
+cout<<duration_sec.count()<<std::endl;
 delete[] f.pMatvals;
 delete[] w.pMatvals;
 delete[] g.pMatvals;
