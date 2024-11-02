@@ -1,11 +1,11 @@
 #include <cuda.h>
-#include <cstdio.h>
+#include <cstdio>
 #include <random>
 #include <iostream>
 
 __global__ void kernel(int *data,int a)
 {
-    data[threadIdx.x*blockIdx.x] = a*threadIdx.x + blockIdx.x;
+    data[threadIdx.x + blockIdx.x*blockDim.x] = a*threadIdx.x + blockIdx.x;
 }
 
 int main()
@@ -13,7 +13,7 @@ int main()
     const int num_elements = 16;
     std::random_device entropy_source;
     std::mt19937_64 generator(entropy_source()); 
-    std::uniform_real_distribution<int> dist1(0,10);
+    std::uniform_real_distribution<float> dist1(0,10);
     
     int a = dist1(generator);
 
@@ -24,7 +24,6 @@ int main()
     kernel<<<2,8>>>(dA,a);
 
     cudaMemcpy(&hA,dA,sizeof(int)*num_elements,cudaMemcpyDeviceToHost);
-
     for(int i = 0; i < num_elements; i++)
     {
         std::cout << hA[i] <<" ";
