@@ -5,7 +5,7 @@
 
 int main(int argc, char*argv[])
 {
-    const int NUM_THREADS_PER_BLOCK = 512;
+    const int NUM_THREADS_PER_BLOCK = 1024;
     cudaEvent_t start;
     cudaEvent_t stop;
     float ms;
@@ -59,7 +59,7 @@ int main(int argc, char*argv[])
     cudaMemcpy(d_c,c,sizeof(float)*n*n,cudaMemcpyHostToDevice);
 
     cudaEventRecord(start);
-    matmul(a,b,c,n,NUM_THREADS_PER_BLOCK);
+    matmul(d_a,d_b,d_c,n,NUM_THREADS_PER_BLOCK);
     cudaEventRecord(stop);
 
     cudaEventSynchronize(stop);
