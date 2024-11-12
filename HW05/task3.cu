@@ -45,7 +45,6 @@ int main(int argc, char *argv[])
     cudaMemcpy(b,d_b,sizeof(float)*N,cudaMemcpyDeviceToHost);
     cudaEventElapsedTime(&ms, start, stop);
   
-    std::cout<<N;
     std::cout<<std::endl; 
     std::cout<<ms;
     std::cout << std::endl;
