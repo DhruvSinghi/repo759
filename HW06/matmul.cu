@@ -1,20 +1,26 @@
 #include "matmul.cuh"
+#include <cmath>
 __global__ void matmul_kernel(const float* A, const float* B, float* C, size_t n)
 {
-    int index = threadIdx.x + blockIdx.x*blockDim.x;
+    int row = threadIdx.x + blockIdx.x*blockDim.x;
+    int col = threadIdx.y + blockIdx.y*blockDim.y;
     float c = 0;
-    if(index < n)
+    if(row < n && col < n)
     for(int k =0; k < n; k++)
     {
-        c += A[index*n + k]*B[k*n + index];
+        c += A[row*n + k]*B[k*n + col];
     }
-    C[index*n+index] = c;
+    C[row*n+col] = c;
 
 }
 
 void matmul(const float* A, const float* B, float* C, size_t n, unsigned int threads_per_block)
 {
-    matmul_kernel<<<(n+threads_per_block-1)/threads_per_block,threads_per_block>>>(A,B,C,n);
+    int block_size = sqrt(threads_per_block);
+    dim3 threads_in_block (block_size,block_size);
+    dim3 num_blocks ((n+block_size-1)/block_size,(n+block_size-1)/block_size);
+    matmul_kernel<<<(num_blocks,threads_in_block)>>>(A,B,C,n);
+    
     cudaError_t err = cudaGetLastError();
     if(err != cudaSuccess) {
 	    fprintf(stderr,"Kernel Launch Failed %s\n",cudaGetErrorString(err));
