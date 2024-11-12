@@ -59,7 +59,7 @@ int main(int argc, char*argv[])
     cudaMemcpy(d_c,c,sizeof(float)*n*n,cudaMemcpyHostToDevice);
 
     cudaEventRecord(start);
-    matmul(a,b,c,n);
+    matmul(a,b,c,n,NUM_THREADS_PER_BLOCK);
     cudaEventRecord(stop);
 
     cudaEventSynchronize(stop);
