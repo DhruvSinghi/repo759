@@ -22,7 +22,7 @@ void matmul(const float* A, const float* B, float* C, size_t n, unsigned int thr
     dim3 threads_in_block (block_size,block_size);
     dim3 num_blocks ((n+block_size-1)/block_size,(n+block_size-1)/block_size);
     matmul_kernel<<<num_blocks,threads_in_block>>>(A,B,C,n);
-
+    cudaDeviceSynchronize();
     cudaError_t err = cudaGetLastError();
     if(err != cudaSuccess) {
 	    fprintf(stderr,"Kernel Launch Failed %s\n",cudaGetErrorString(err));

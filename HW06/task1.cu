@@ -5,7 +5,7 @@
 
 int main(int argc, char*argv[])
 {
-    const int NUM_THREADS_PER_BLOCK = 1024;
+    const int NUM_THREADS_PER_BLOCK = 256;
     cudaEvent_t start;
     cudaEvent_t stop;
     float ms;
@@ -27,7 +27,7 @@ int main(int argc, char*argv[])
         a[i] = dist(generator);
         b[i] = dist(generator);
     }
-    for(int i = 0; i < n; i++)
+   /* for(int i = 0; i < n; i++)
     {
         for(int j = 0; j < n; j++)
         {
@@ -37,8 +37,8 @@ int main(int argc, char*argv[])
                 std::cout<<std::endl;
             }
         }
-    }
-    for(int i = 0; i < n; i++)
+    }*/
+    /*for(int i = 0; i < n; i++)
     {
         for(int j = 0; j < n; j++)
         {
@@ -48,7 +48,7 @@ int main(int argc, char*argv[])
                 std::cout<<std::endl;
             }
         }
-    }
+    }*/
 
     cudaMalloc((void**)&d_a,sizeof(float) * n*n);
     cudaMalloc((void**)&d_b,sizeof(float) * n*n);
@@ -66,7 +66,7 @@ int main(int argc, char*argv[])
     cudaMemcpy(c,d_c,sizeof(float)*n*n,cudaMemcpyDeviceToHost);
     cudaEventElapsedTime(&ms, start, stop);
 
-    for(int i = 0; i < n; i++)
+   /* for(int i = 0; i < n; i++)
     {
         for(int j = 0; j < n; j++)
         {
@@ -76,9 +76,10 @@ int main(int argc, char*argv[])
                 std::cout<<std::endl;
             }
         }
-    }
+    }*/
+    std::cout<<c[(n-1)*n + n-1];
     std::cout<<std::endl; 
-    std::cout<<"Time ELapsed"<<ms;
+    std::cout<<"Time ELapsed "<<ms;
 
     cudaFree(d_a);
     cudaFree(d_b);
