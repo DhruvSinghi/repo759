@@ -5,7 +5,7 @@
 
 int main(int argc, char*argv[])
 {
-    const int NUM_THREADS_PER_BLOCK = 256;
+   // const int NUM_THREADS_PER_BLOCK = 256;
     cudaEvent_t start;
     cudaEvent_t stop;
     float ms;
@@ -13,6 +13,7 @@ int main(int argc, char*argv[])
     cudaEventCreate(&stop);
 
     int n = std::stoi(argv[1]);
+    int NUM_THREADS_PER_BLOCK = std::stoi(argv[2]);
     std::random_device entropy_source;
     std::mt19937_64 generator(entropy_source());
     std::uniform_real_distribution<float> dist(-1.0,1.0);
