@@ -12,7 +12,7 @@ nvcc task1.cu matmul.cu -Xcompiler -O3 -Xcompiler -Wall -Xptxas -O3 -std=c++17 -
 ##	./task1 $((2**i)) 1024
 ##	echo "\n"
 ##done
-./task1 4 1024
+./task1 4 32
 
 
 

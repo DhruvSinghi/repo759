@@ -15,7 +15,7 @@ int main(int argc, char*argv[])
     int block_dim = std::stoi(argv[2]);
     std::random_device entropy_source;
     std::mt19937_64 generator(entropy_source());
-    std::uniform_real_distribution <int> dist(-1.0,1.0);
+    std::uniform_int_distribution <int> dist(-10,10);
 
     int*A = (int*)malloc(n*n*(sizeof(int)));
     int*B = (int*)malloc(n*n*(sizeof(int)));
@@ -31,7 +31,7 @@ int main(int argc, char*argv[])
     {
         for(int j = 0; j < n; j++)
         {
-            std::cout<<A[i*n+j];
+            std::cout<<A[i*n+j]<<" ";
             if(j == n-1)
             {
                 std::cout<<std::endl;
@@ -42,7 +42,7 @@ int main(int argc, char*argv[])
     {
         for(int j = 0; j < n; j++)
         {
-            std::cout<<B[i*n+j];
+            std::cout<<B[i*n+j]<<" ";
             if(j == n-1)
             {
                 std::cout<<std::endl;
@@ -70,7 +70,7 @@ int main(int argc, char*argv[])
     {
         for(int j = 0; j < n; j++)
         {
-            std::cout<<C[i*n+j];
+            std::cout<<C[i*n+j]<<" ";
             if(j == n-1)
             {
                 std::cout<<std::endl;
