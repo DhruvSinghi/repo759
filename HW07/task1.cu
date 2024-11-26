@@ -3,6 +3,12 @@
 #include <random>
 #include "matmul.cuh"
 
+
+
+__global__ void warm_up_kernel(){}
+
+
+
 int main(int argc, char*argv[])
 {
     cudaEvent_t start;
@@ -91,6 +97,8 @@ int main(int argc, char*argv[])
     cudaMemcpy(d_A3,A3,sizeof(double)*n*n,cudaMemcpyHostToDevice);
     cudaMemcpy(d_B3,B3,sizeof(double)*n*n,cudaMemcpyHostToDevice);
     cudaMemcpy(d_C3,C3,sizeof(double)*n*n,cudaMemcpyHostToDevice);
+
+    warm_up_kernel<<<1,1>>>();
 
     cudaEventRecord(start);
     matmul_1(d_A1,d_B1,d_C1,n,block_dim);

@@ -4,6 +4,7 @@
 #include <cuda.h>
 #include <iostream>
 #include <cuda_runtime.h>
+
 __global__ void matmul_1_kernel(const int*A, const int*B, int*C, unsigned int n)
 {
     extern __shared__ int shared_mem[];
@@ -47,9 +48,9 @@ __host__ void matmul_1(const int *A, const int *B, int *C, unsigned int n,unsign
 
 __global__ void matmul_2_kernel(const float*A, const float*B, float*C, unsigned int n)
 {
-    extern __shared__ float shared_mem[];
-    float* As = shared_mem;
-    float* Bs = &shared_mem[blockDim.x*blockDim.x];
+    extern __shared__ float shared_mem1[];
+    float* As = shared_mem1;
+    float* Bs = &shared_mem1[blockDim.x*blockDim.x];
     float Csub = 0;
     int row = blockIdx.y*blockDim.y + threadIdx.y;
     int col = blockIdx.x*blockDim.x + threadIdx.x;
@@ -82,16 +83,16 @@ __host__ void matmul_2(const float *A, const float *B, float *C, unsigned int n,
 {
     dim3 dimGrid((n+block_dim-1)/block_dim,(n+block_dim-1)/block_dim);
     dim3 dimBlock(block_dim,block_dim);
-    matmul_1_kernel<<<dimGrid,dimBlock,(2*block_dim*block_dim)*sizeof(float)>>>(A,B,C,n);
+    matmul_2_kernel<<<dimGrid,dimBlock,(2*block_dim*block_dim)*sizeof(float)>>>(A,B,C,n);
 }
 
 
 __global__ void matmul_3_kernel(const double*A, const double*B, double*C, unsigned int n)
 {
-    extern __shared__ double shared_mem[];
-    float* As = shared_mem;
-    float* Bs = &shared_mem[blockDim.x*blockDim.x];
-    float Csub = 0;
+    extern __shared__ double shared_mem2[];
+    double* As = shared_mem2;
+    double* Bs = &shared_mem2[blockDim.x*blockDim.x];
+    double Csub = 0;
     int row = blockIdx.y*blockDim.y + threadIdx.y;
     int col = blockIdx.x*blockDim.x + threadIdx.x;
     for(int tile_idx = 0; tile_idx < (int)n; tile_idx+=blockDim.x)
@@ -123,5 +124,5 @@ __host__ void matmul_3(const double *A, const double *B, double *C, unsigned int
 {
     dim3 dimGrid((n+block_dim-1)/block_dim,(n+block_dim-1)/block_dim);
     dim3 dimBlock(block_dim,block_dim);
-    matmul_1_kernel<<<dimGrid,dimBlock,(2*block_dim*block_dim)*sizeof(double)>>>(A,B,C,n);
+    matmul_3_kernel<<<dimGrid,dimBlock,(2*block_dim*block_dim)*sizeof(double)>>>(A,B,C,n);
 }
