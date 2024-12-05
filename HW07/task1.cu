@@ -136,19 +136,23 @@ int main(int argc, char*argv[])
                 std::cout<<std::endl;
             }
         }
-    }*/
+    }
+    */
+    std::cout<<C1[0]<<std::endl;
     std::cout<<C1[(n-1)*n + n-1];
     std::cout<<std::endl; 
     std::cout<<"Time ELapsed "<<ms1;
     std::cout<<std::endl;
     std::cout<<std::endl;
 
+    std::cout<<C2[0]<<std::endl;
     std::cout<<C2[(n-1)*n + n-1];
     std::cout<<std::endl; 
     std::cout<<"Time ELapsed "<<ms2;
     std::cout<<std::endl;
     std::cout<<std::endl;
 
+    std::cout<<C3[0]<<std::endl;
     std::cout<<C3[(n-1)*n + n-1];
     std::cout<<std::endl; 
     std::cout<<"Time ELapsed "<<ms3;

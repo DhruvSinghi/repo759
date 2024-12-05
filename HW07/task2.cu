@@ -15,13 +15,14 @@ int main(int argc, char*argv[])
     int threads_per_block = std::stoi(argv[2]);
     std::random_device entropy_source;
     std::mt19937_64 generator(entropy_source());
-    std::uniform_int_distribution <float> dist1(-1,1);
+    std::uniform_real_distribution <float> dist1(-1,1);
 
     float*input = (float*)malloc(n*sizeof(float));
     for(int i = 0; i < n; i++)
     {
-        input[i] = 1;//dist1(generator);
+        input[i] = dist1(generator);
     }
+    float*d_input,*d_output;
     cudaMalloc((void**)&d_input,sizeof(float) * n);
     cudaMemcpy(d_input,input,sizeof(float)*n,cudaMemcpyHostToDevice);
 
@@ -29,10 +30,10 @@ int main(int argc, char*argv[])
     cudaMalloc((void**)&d_output,sizeof(float)*first_block_size);
 
     cudaEventRecord(start);
-    reduce(d_input,d_output,n,threads_per_block);
+    reduce(&d_input,&d_output,n,threads_per_block);
     cudaEventRecord(stop);
 
-    cudaMemcpy(input,d_input,sizeof(float)*n,cudaMemcpyDeviceToHost);
+    cudaMemcpy(input,d_input,sizeof(float),cudaMemcpyDeviceToHost);
     cudaEventSynchronize(stop);
     cudaEventElapsedTime(&ms, start, stop);
 
@@ -41,5 +42,9 @@ int main(int argc, char*argv[])
     std::cout<<"Time ELapsed "<<ms;
     std::cout<<std::endl;
     std::cout<<std::endl;
+
+    cudaFree(d_input);
+    cudaFree(d_output);
+    free(input);
 
 }

@@ -8,7 +8,8 @@ cd $SLURM_SUBMIT_DIR
 module load gcc/11.3.0
 module load nvidia/cuda/11.8.0
 nvcc task2.cu reduce.cu -Xcompiler -O3 -Xcompiler -Wall -Xptxas -O3 -std=c++17 -o task2
-for i in {5..14}; do
-	./task2 $((2**i)) 1024
+for i in {10..30}; do
+	./task2 $((2**i)) 512
 	echo "\n"
 done
+##./task2 32 1024
